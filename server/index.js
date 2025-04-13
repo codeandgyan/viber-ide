@@ -19,12 +19,10 @@ const io = new SocketServer({
 io.attach(server);
 
 shell.stdout.on("data", (data) => {
-  console.log("emitting term data:", data.toString());
   io.emit("terminal:data", data.toString());
 });
 
 shell.stderr.on("data", (data) => {
-  // console.error(`stderr: ${data.toString()}`);
   io.emit("terminal:data", data.toString());
 });
 
@@ -40,7 +38,6 @@ io.on("connection", (socket) => {
   console.log(`Socket connected: ${socket.id}`);
 
   socket.on("terminal:write", (data) => {
-    console.log("received an event", data);
     shell.stdin.write(data);
   });
 
