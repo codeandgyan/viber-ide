@@ -12,7 +12,7 @@ const Terminal = () => {
     isRendered.current = true;
 
     const term = new XTerminal({
-      rows: 20,
+      rows: 18,
     });
     term.open(terminalRef.current);
 
