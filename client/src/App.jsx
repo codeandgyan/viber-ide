@@ -1,5 +1,5 @@
 import "./App.css";
-import Terminal from "./components/Terminal";
+import Terminal from "./components/terminal";
 import "@xterm/xterm/css/xterm.css";
 
 function App() {
