@@ -13,6 +13,9 @@ const osShell = os.platform() === "win32" ? "powershell.exe" : "bash";
 const shell = spawn(osShell, [], {
   // Start a persistent bash session
   cwd: `${process.env.INIT_CWD}/user`,
+  shell: true,
+  // detached: true,
+  stdio: ["pipe", "pipe", "pipe"],
 });
 const app = express();
 const server = http.createServer(app);
@@ -53,6 +56,10 @@ io.on("connection", (socket) => {
 
   socket.on("terminal:write", (data) => {
     console.log("received from client", data);
+    // if (data === "\x03") {
+    //   shell.kill("SIGINT"); // Simulate Ctrl+C
+    //   return;
+    // }
     shell.stdin.write(data);
   });
 

@@ -17,7 +17,7 @@ const FileTreeNode = ({ nodeName, nodes, onSelect, path }) => {
         {isDir ? <Folder size={16} /> : <FileText size={16} />}
         {nodeName}
       </div>
-      {nodes && (
+      {nodes && nodeName !== "node_modules" && (
         <ul>
           {Object.keys(nodes).map((child) => {
             return (
