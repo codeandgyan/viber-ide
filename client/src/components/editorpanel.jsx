@@ -49,23 +49,29 @@ function EditorPanel({ selectedFile }) {
 
   return (
     <div className="flex flex-col h-full justify-end">
-      {selectedFile && (
-        <div className="flex bg-[#1f201b] text-gray-400 py-1 gap-2 items-center">
-          <p>{selectedFile.replaceAll("/", " > ")}</p>{" "}
-          {isSaved ? (
-            <span className="bg-green-600 text-white text-[10px] font-bold px-1 py-0.5 rounded-sm">
-              {"Saved"}
-            </span>
-          ) : (
-            <span className="bg-red-600 text-white text-[10px] font-bold px-1 py-0.5 rounded-sm">
-              {"Unsaved"}
-            </span>
-          )}
-        </div>
-      )}
+      <div className="flex bg-[#1f201b] text-gray-400 py-1 gap-2 items-center">
+        {selectedFile ? (
+          <>
+            <p>{selectedFile.replaceAll("/", " > ")}</p>
+            {isSaved ? (
+              <span className="bg-green-600 text-white text-[10px] font-bold px-1 py-0.5 rounded-sm">
+                {"Saved"}
+              </span>
+            ) : (
+              <span className="bg-red-600 text-white text-[10px] font-bold px-1 py-0.5 rounded-sm">
+                {"Unsaved"}
+              </span>
+            )}
+            )
+          </>
+        ) : (
+          <span className="px-2 font-bold">{"Viber"}</span>
+        )}
+      </div>
+
       <AceEditor
         height="96%"
-        width="96%"
+        width="100%"
         mode={language}
         theme="monokai"
         fontSize={14}

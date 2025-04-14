@@ -13,8 +13,9 @@ const Terminal = () => {
     isRendered.current = true;
 
     const term = new XTerminal({
-      rows: 12,
-      cols: 300,
+      rows: 18,
+      cols: 143,
+      cursorBlink: true,
     });
     term.open(terminalRef.current);
 

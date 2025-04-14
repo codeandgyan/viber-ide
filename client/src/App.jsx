@@ -34,7 +34,7 @@ function App() {
       <div className="hidden md:block md:min-w-24 lg:min-w-60 bg-[#1f201b] text-white border-r-2 rounded-r-sm border-gray-400">
         <Tree tree={fileTree} onSelect={(path) => setSelectedFile(path)} />
       </div>
-      <div className="flex-1 flex flex-col">
+      <div className="flex flex-col">
         <div id="editor-container" className="flex-1 min-h-max">
           <EditorPanel selectedFile={selectedFile} />
         </div>
