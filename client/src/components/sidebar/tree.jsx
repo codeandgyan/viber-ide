@@ -1,7 +1,9 @@
 import FileTreeNode from "./filetreenode";
 
-const Tree = ({ tree }) => {
-  return <FileTreeNode nodeName={"/"} nodes={tree} />;
+const Tree = ({ tree, onSelect }) => {
+  return (
+    <FileTreeNode nodeName={"/"} path={""} nodes={tree} onSelect={onSelect} />
+  );
 };
 
 export default Tree;

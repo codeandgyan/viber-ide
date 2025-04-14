@@ -56,6 +56,11 @@ io.on("connection", (socket) => {
     shell.stdin.write(data);
   });
 
+  socket.on("file:change", async ({ path, content }) => {
+    console.log("received from client", path, content);
+    await fs.writeFile(`./user${path}`, content);
+  });
+
   socket.on("disconnect", () => {
     console.log(`Socket disconnected: ${socket.id}`);
   });
@@ -64,6 +69,12 @@ io.on("connection", (socket) => {
 app.get("/files", async (req, res) => {
   const fileTree = await generateFileTree(`${process.env.INIT_CWD}/user`);
   res.json({ tree: fileTree });
+});
+
+app.get("/files/content", async (req, res) => {
+  const { path } = req.query;
+  const content = await fs.readFile(`./user${path}`, "utf-8");
+  res.json({ content });
 });
 
 async function generateFileTree(directory) {

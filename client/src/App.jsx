@@ -5,9 +5,12 @@ import "@xterm/xterm/css/xterm.css";
 import Tree from "./components/sidebar/tree";
 import axios from "axios";
 import socket from "./socket";
+import EditorPanel from "./components/editorpanel";
 
 function App() {
   const [fileTree, setFileTree] = useState({});
+  const [selectedFile, setSelectedFile] = useState("");
+
   const getFileTree = async () => {
     const response = await axios.get("http://localhost:9000/files");
     console.log(response.data);
@@ -28,12 +31,14 @@ function App() {
 
   return (
     <div className="h-screen w-screen flex flex-row">
-      <div className="min-w-fit max-w-max bg-[#28282B] text-white border-r-2 rounded-r-sm border-gray-400">
-        <Tree tree={fileTree} />
+      <div className="hidden md:block md:min-w-24 lg:min-w-60 bg-[#1f201b] text-white border-r-2 rounded-r-sm border-gray-400">
+        <Tree tree={fileTree} onSelect={(path) => setSelectedFile(path)} />
       </div>
       <div className="flex-1 flex flex-col">
-        <div id="editor-container" className="flex-1"></div>
-        <div id="terminal-container" className="py-4">
+        <div id="editor-container" className="flex-1 min-h-max">
+          <EditorPanel selectedFile={selectedFile} />
+        </div>
+        <div id="terminal-container" className="border-2 border-gray-400">
           <Terminal />
         </div>
       </div>

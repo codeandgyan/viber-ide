@@ -25,7 +25,7 @@ const Terminal = () => {
 
     socket.emit("terminal:write", "\n");
 
-    socket.on("terminal:data", (data) => {
+    function onTerminalData(data) {
       console.log("receiving from server", data);
       if (data === "\x7F") {
         if (
@@ -46,9 +46,12 @@ const Terminal = () => {
         term.write(current + "\x1b[2K\r");
       }
       term.write(data);
-    });
+    }
+
+    socket.on("terminal:data", onTerminalData);
+
     // return () => {
-    //   socket.off("terminal:data");
+    //   socket.off("terminal:data", onTerminalData);
     // };
   }, []);
 
