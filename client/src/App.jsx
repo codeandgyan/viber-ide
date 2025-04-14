@@ -6,6 +6,7 @@ import Tree from "./components/sidebar/tree";
 import axios from "axios";
 import socket from "./socket";
 import EditorPanel from "./components/editorpanel";
+import VibeChatter from "./components/VibeChatter";
 
 function App() {
   const [fileTree, setFileTree] = useState({});
@@ -42,6 +43,7 @@ function App() {
           <Terminal />
         </div>
       </div>
+      <VibeChatter onChat={(prompt) => console.log(prompt)} />
     </div>
   );
 }
