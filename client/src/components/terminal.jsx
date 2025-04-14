@@ -16,6 +16,15 @@ const Terminal = () => {
       rows: 18,
       cols: 143,
       cursorBlink: true,
+      theme: {
+        background: "#10100e",
+        foreground: "#d1d5db",
+        cursor: "#d1d5db",
+        selection: "#374151",
+        black: "#1f201b",
+        red: "#ef4444",
+        
+      }
     });
     term.open(terminalRef.current);
 

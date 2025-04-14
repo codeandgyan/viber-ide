@@ -31,14 +31,14 @@ function App() {
 
   return (
     <div className="h-screen w-screen flex flex-row">
-      <div className="hidden md:block md:min-w-24 lg:min-w-60 bg-[#1f201b] text-white border-r-2 rounded-r-sm border-gray-400">
+      <div className="hidden md:block md:min-w-24 lg:min-w-60 bg-[#1f201b] text-white border-r-1 border-gray-700">
         <Tree tree={fileTree} onSelect={(path) => setSelectedFile(path)} />
       </div>
       <div className="flex flex-col">
         <div id="editor-container" className="flex-1 min-h-max">
           <EditorPanel selectedFile={selectedFile} />
         </div>
-        <div id="terminal-container" className="border-2 border-gray-400">
+        <div id="terminal-container" className="border-1 border-gray-700">
           <Terminal />
         </div>
       </div>
